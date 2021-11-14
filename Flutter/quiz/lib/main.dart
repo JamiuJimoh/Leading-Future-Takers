@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
@@ -8,6 +9,8 @@ import 'home_page.dart';
 //TODO:1 Create the ui
 //TODO:2 add the functionality
 //TODO:3 add backend
+
+
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
+      theme: ThemeData().copyWith(
         backgroundColor: kBackgroundColor,
       ),
       home: const HomePage(),

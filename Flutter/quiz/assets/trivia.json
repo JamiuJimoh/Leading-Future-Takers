@@ -1,0 +1,102 @@
+[
+    {
+        "question": "Which country invented tea?",
+        "options": [
+            "India",
+            "Malta",
+            "China",
+            "Vietnam"
+        ],
+        "answer": "China"
+    },
+    {
+        "question": "Which is the only vowel on a standard keyboard that is not on the top line of letters?",
+        "options": [
+            "A",
+            "B",
+            "C",
+            "D"
+        ],
+        "answer": "A"
+    },
+    {
+        "question": "Hg is the chemical symbol of which element?",
+        "options": [
+            "Boron",
+            "Carbon",
+            "Argon",
+            "Mercury"
+        ],
+        "answer": "Mercury"
+    },
+    {
+        "question": "The fear referred to as arachnophobia indicates a fear of what?",
+        "options": [
+            "Water",
+            "Spiders",
+            "Death",
+            "Females"
+        ],
+        "answer": "Spiders"
+    },
+    {
+        "question": " The colored part of the human eye that controls how much light passes through the pupil is called?",
+        "options": [
+            "Pupil",
+            "Iris",
+            "Scapula",
+            "Cornea"
+        ],
+        "answer": "Cornea"
+    },
+    {
+        "question": "Which company owns Bugatti, Lamborghini, Audi, Porsche, and Ducati?",
+        "options": [
+            "Volkswagen",
+            "Space X",
+            "Pied Piper",
+            "Kia"
+        ],
+        "answer": "Volkswagen"
+    },
+    {
+        "question": " How many football players should each team have on the field at the start of each match?",
+        "options": [
+            "22",
+            "14",
+            "11",
+            "6"
+        ],
+        "answer": "11"
+    },
+    {
+        "question": "Which Jamaican runner is an 11-time world champion and holds the record in the 100 and 200-meter race?",
+        "options": [
+            "Mo Farah",
+            "Ismail Lo",
+            "Yohan Blake",
+            "Usain Bolt"
+        ],
+        "answer": "Usain Bolt"
+    },
+    {
+        "question": "What’s a “king” honeybee called?",
+        "options": [
+            "Drone",
+            "Mare",
+            "Kunta",
+            "Kong"
+        ],
+        "answer": "Drone"
+    },
+    {
+        "question": "Which animal has the largest eye in the world?",
+        "options": [
+            "The giant squid",
+            "The blue whale",
+            "Great white",
+            "Octopus"
+        ],
+        "answer": "The giant squid"
+    }
+]

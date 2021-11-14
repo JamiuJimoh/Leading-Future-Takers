@@ -3,31 +3,40 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class ProgressBar extends StatelessWidget {
-  const ProgressBar({Key? key}) : super(key: key);
+  const ProgressBar({Key? key, required this.questionsCount}) : super(key: key);
+  final int questionsCount;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        for (var i = 0; i <= 4; i++)
+        // for (var i = 0; i <= 4; i++)
+        //   Expanded(
+        //     child: Row(
+        //       children: const [
+        //         _Bar(color: kSuccess),
+        //         SizedBox(width: 4.0),
+        //       ],
+        //     ),
+        //   ),
+        // const _Bar(color: kFailure),
+        // const SizedBox(width: 4.0),
+        // const _Bar(color: Colors.white),
+        // const SizedBox(width: 4.0),
+        // for (var i = 0; i <= 11; i++)
+        //   Expanded(
+        //     child: Row(
+        //       children: const [
+        //         _Bar(),
+        //         SizedBox(width: 4.0),
+        //       ],
+        //     ),
+        //   ),
+        for (var i = 0; i < questionsCount; i++)
           Expanded(
             child: Row(
               children: const [
                 _Bar(color: kSuccess),
-                SizedBox(width: 4.0),
-              ],
-            ),
-          ),
-        const _Bar(color: kFailure),
-        const SizedBox(width: 4.0),
-        const _Bar(color: Colors.white),
-        const SizedBox(width: 4.0),
-        for (var i = 0; i <= 11; i++)
-          Expanded(
-            child: Row(
-              children: const [
-                _Bar(),
                 SizedBox(width: 4.0),
               ],
             ),
