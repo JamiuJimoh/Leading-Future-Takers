@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'options_box.dart';
-import 'progress_bar.dart';
+import 'constants.dart';
+import 'widgets/options_box.dart';
+import 'widgets/progress_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget {
             Text(
               'Random Quiz',
               style: GoogleFonts.barlow(
-                color: const Color(0xFF40455E),
+                color: kOnPrimary3,
                 fontSize: 20.0,
               ),
             ),
@@ -30,7 +31,7 @@ class HomePage extends StatelessWidget {
                 Text(
                   'Question 06/',
                   style: GoogleFonts.barlow(
-                    color: Colors.white70,
+                    color: kOnPrimary1,
                     fontSize: 20.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
                 Text(
                   '20',
                   style: GoogleFonts.barlow(
-                    color: const Color(0xFF40455E),
+                    color: kOnPrimary2,
                     fontSize: 20.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -56,11 +57,19 @@ class HomePage extends StatelessWidget {
                   Text(
                     'Who is the G.O.A.T of football?',
                     style: GoogleFonts.barlow(
-                      color: Colors.white70,
+                      color: kOnPrimary1,
                       fontSize: 18.0,
                     ),
                   ),
-                  const OptionsBox(),
+                  const OptionsBox(
+                    answer: 'Lionel Messi',
+                    options: [
+                      'Diego Maradona',
+                      'Lionel Messi',
+                      'Cristiano Ronaldo',
+                      'Pele',
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -74,13 +83,13 @@ class HomePage extends StatelessWidget {
                       const Icon(
                         Icons.power_settings_new,
                         size: 18.0,
-                        color: Colors.white70,
+                        color: kOnPrimary1,
                       ),
                       const SizedBox(width: 7.0),
                       Text(
                         'Quit Quiz',
                         style: GoogleFonts.barlow(
-                          color: Colors.white70,
+                          color: kOnPrimary1,
                           fontSize: 17.0,
                         ),
                       ),
@@ -94,13 +103,13 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    primary: const Color(0xFF06D0F3),
+                    primary: kButtonColor,
                   ),
                   onPressed: () {},
                   child: Text(
                     'Next',
                     style: GoogleFonts.barlow(
-                      color: Colors.white70,
+                      color: kOnPrimary1,
                       fontSize: 17.0,
                     ),
                   ),

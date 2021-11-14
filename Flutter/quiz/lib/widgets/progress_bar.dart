@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class ProgressBar extends StatelessWidget {
   const ProgressBar({Key? key}) : super(key: key);
 
@@ -12,12 +14,12 @@ class ProgressBar extends StatelessWidget {
           Expanded(
             child: Row(
               children: const [
-                _Bar(color: Color(0xFF10C69A)),
+                _Bar(color: kSuccess),
                 SizedBox(width: 4.0),
               ],
             ),
           ),
-        const _Bar(color: Colors.red),
+        const _Bar(color: kFailure),
         const SizedBox(width: 4.0),
         const _Bar(color: Colors.white),
         const SizedBox(width: 4.0),
@@ -49,8 +51,9 @@ class _Bar extends StatelessWidget {
         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
         height: 2.0,
         decoration: BoxDecoration(
-            color: color ?? const Color(0xFF40455E),
-            borderRadius: const BorderRadius.all(Radius.circular(20.0))),
+          color: color ?? kOnPrimary3,
+          borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        ),
       ),
     );
   }

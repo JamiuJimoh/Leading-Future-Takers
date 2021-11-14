@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'constants.dart';
 import 'home_page.dart';
 
 // https://dribbble.com/shots/8210470-Quiz-App-Mobile-Application/attachments/586455?mode=media
@@ -19,9 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // primarySwatch: Color(0xFF10C69A),
-        backgroundColor: const Color(0xFF141A32),
-
+        backgroundColor: kBackgroundColor,
       ),
       home: const HomePage(),
     );
