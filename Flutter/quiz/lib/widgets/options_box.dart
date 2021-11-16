@@ -8,10 +8,13 @@ class OptionsBox extends StatefulWidget {
     required this.options,
     required this.answer,
     required this.isAnswered,
+    required this.isCorrect,
   }) : super(key: key);
   final List<String> options;
   final String answer;
+  //? we'll sort this issue of mutable fields in a stateful widget with State management
   bool isAnswered;
+  final void Function(bool) isCorrect;
 
   @override
   State<OptionsBox> createState() => _OptionsBoxState();
@@ -30,10 +33,11 @@ class _OptionsBoxState extends State<OptionsBox> {
                 option: option,
                 answer: widget.answer,
                 answered: widget.isAnswered,
-                answeredFn: (ans) {
+                answeredFn: (ans, isCorrect) {
                   setState(() {
                     widget.isAnswered = ans;
                   });
+                  widget.isCorrect(isCorrect);
                 },
               ),
               const SizedBox(height: 20.0),

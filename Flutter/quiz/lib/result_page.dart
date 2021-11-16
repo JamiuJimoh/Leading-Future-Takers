@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:quiz/widgets/blue_button.dart';
 
 import 'constants.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  const ResultPage({
+    Key? key,
+    required this.reset,
+    required this.scoreCount,
+    required this.questionCount,
+  }) : super(key: key);
+  final VoidCallback reset;
+  final int scoreCount;
+  final int questionCount;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +37,20 @@ class ResultPage extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 220.0,
-              child: Image.asset('assets/images/trophy.png'),
+              child: Image.asset(
+                scoreCount > (questionCount / 2)
+                    ? 'assets/images/trophy.png'
+                    : 'assets/images/loser.png',
+              ),
             ),
             const SizedBox(height: 40.0),
             Expanded(
               child: Column(
                 children: [
                   Text(
-                    'Congratulations!',
+                    scoreCount > (questionCount / 2)
+                        ? 'Congratulations!'
+                        : 'Oops try again',
                     style: GoogleFonts.barlow(
                       color: kOnPrimary1,
                       fontSize: 25.0,
@@ -67,7 +82,7 @@ class ResultPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '20',
+                        '$scoreCount',
                         // textAlign: TextAlign.center,
                         style: GoogleFonts.barlow(
                           color: kSuccess,
@@ -78,7 +93,7 @@ class ResultPage extends StatelessWidget {
                       // const SizedBox(width: 5.0),
                       const SizedBox(height: 40.0),
                       Text(
-                        ' / 20',
+                        ' / $questionCount',
                         style: GoogleFonts.barlow(
                           color: kOnPrimary1,
                           fontSize: 35.0,
@@ -90,7 +105,12 @@ class ResultPage extends StatelessWidget {
                 ],
               ),
             ),
-            BlueButton(label: 'Restart', onPressed: () => print('Reset')),
+            BlueButton(
+                label: 'Restart',
+                onPressed: () {
+                  reset();
+                  Navigator.of(context).pop();
+                }),
           ],
         ),
       ),

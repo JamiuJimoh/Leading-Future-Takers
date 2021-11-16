@@ -16,7 +16,7 @@ class Option extends StatefulWidget {
   final String option;
   final String answer;
   final bool answered;
-  final void Function(bool) answeredFn;
+  final void Function(bool, bool) answeredFn;
 
   @override
   State<Option> createState() => _OptionState();
@@ -48,7 +48,7 @@ class _OptionState extends State<Option> {
     });
     // ? using a call back to pass 'false' to the parent
     // ? to tell the parent that the question is answered or a choice was made
-    widget.answeredFn(true);
+    widget.answeredFn(true, _isCorrect);
   }
 
   @override

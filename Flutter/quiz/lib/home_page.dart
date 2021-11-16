@@ -20,7 +20,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var currentIndex = 0;
+  var _currentIndex = 0;
+  var _scoreCount = 0;
+  //! We need the score count in the result page(it was pushed on the route stack)
+  //! The OptionsBox updates the score
+  //! So we need to keep track of the score in this widget and communicate with the score with a callback
 
   Future<List<Question>> getJson() async {
     final rawData = await rootBundle.loadString('assets/trivia.json');
@@ -30,6 +34,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(_scoreCount);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
@@ -56,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         Text(
-                          'Question ${currentIndex + 1}/',
+                          'Question ${_currentIndex + 1}/',
                           style: GoogleFonts.barlow(
                             color: kOnPrimary1,
                             fontSize: 20.0,
@@ -75,8 +80,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 20.0),
                     ProgressBar(
-                      currIndex: currentIndex,
-                      isAnswered: questions[currentIndex].isAnswered,
+                      currIndex: _currentIndex,
+                      isAnswered: questions[_currentIndex].isAnswered,
                       questionsCount: questions.length,
                     ),
                     Expanded(
@@ -86,16 +91,21 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const SizedBox(height: 30.0),
                           Text(
-                            questions[currentIndex].question,
+                            questions[_currentIndex].question,
                             style: GoogleFonts.barlow(
                               color: kOnPrimary1,
                               fontSize: 18.0,
                             ),
                           ),
                           OptionsBox(
-                            isAnswered: questions[currentIndex].isAnswered,
-                            answer: questions[currentIndex].answer,
-                            options: questions[currentIndex].options,
+                            isAnswered: questions[_currentIndex].isAnswered,
+                            answer: questions[_currentIndex].answer,
+                            options: questions[_currentIndex].options,
+                            isCorrect: (isCorrect) {
+                              if (isCorrect) {
+                                _scoreCount++;
+                              }
+                            },
                           ),
                         ],
                       ),
@@ -126,14 +136,24 @@ class _HomePageState extends State<HomePage> {
                         BlueButton(
                           label: 'Next',
                           onPressed: () {
-                            print(currentIndex);
-                            if (currentIndex < questions.length - 1) {
+                            if (_currentIndex < questions.length - 1) {
                               setState(() {
-                                currentIndex += 1;
+                                _currentIndex += 1;
                               });
-                            } else if (currentIndex == questions.length - 1) {
+                            } else if (_currentIndex == questions.length - 1) {
                               Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => ResultPage()),
+                                MaterialPageRoute(
+                                  builder: (_) => ResultPage(
+                                    questionCount: questions.length,
+                                    scoreCount: _scoreCount,
+                                    reset: () {
+                                      setState(() {
+                                        _currentIndex = 0;
+                                        _scoreCount = 0;
+                                      });
+                                    },
+                                  ),
+                                ),
                               );
                             }
                           },
