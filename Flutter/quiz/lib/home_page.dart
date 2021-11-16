@@ -10,7 +10,6 @@ import 'constants.dart';
 import 'question.dart';
 import 'widgets/blue_button.dart';
 import 'widgets/options_box.dart';
-import 'widgets/progress_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,7 +33,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(_scoreCount);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(
@@ -79,11 +77,6 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     const SizedBox(height: 20.0),
-                    ProgressBar(
-                      currIndex: _currentIndex,
-                      isAnswered: questions[_currentIndex].isAnswered,
-                      questionsCount: questions.length,
-                    ),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
