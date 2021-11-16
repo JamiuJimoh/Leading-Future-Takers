@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'
     show rootBundle; //? to get only rootBundle
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz/result_page.dart';
 
 import 'constants.dart';
 import 'question.dart';
+import 'widgets/blue_button.dart';
 import 'widgets/options_box.dart';
 import 'widgets/progress_bar.dart';
 
@@ -18,6 +20,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var currentIndex = 0;
+
   Future<List<Question>> getJson() async {
     final rawData = await rootBundle.loadString('assets/trivia.json');
     final data = json.decode(rawData) as List;
@@ -27,7 +31,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.only(
             top: 60.0, bottom: 5.0, left: 13.0, right: 13.0),
@@ -53,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         Text(
-                          'Question 06/',
+                          'Question ${currentIndex + 1}/',
                           style: GoogleFonts.barlow(
                             color: kOnPrimary1,
                             fontSize: 20.0,
@@ -71,7 +74,11 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     const SizedBox(height: 20.0),
-                    ProgressBar(questionsCount: questions.length),
+                    ProgressBar(
+                      currIndex: currentIndex,
+                      isAnswered: questions[currentIndex].isAnswered,
+                      questionsCount: questions.length,
+                    ),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -79,15 +86,16 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const SizedBox(height: 30.0),
                           Text(
-                            questions[0].question,
+                            questions[currentIndex].question,
                             style: GoogleFonts.barlow(
                               color: kOnPrimary1,
                               fontSize: 18.0,
                             ),
                           ),
                           OptionsBox(
-                            answer: questions[0].answer,
-                            options: questions[0].options,
+                            isAnswered: questions[currentIndex].isAnswered,
+                            answer: questions[currentIndex].answer,
+                            options: questions[currentIndex].options,
                           ),
                         ],
                       ),
@@ -115,23 +123,20 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15.0, horizontal: 55.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            primary: kButtonColor,
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Next',
-                            style: GoogleFonts.barlow(
-                              color: kOnPrimary1,
-                              fontSize: 17.0,
-                            ),
-                          ),
+                        BlueButton(
+                          label: 'Next',
+                          onPressed: () {
+                            print(currentIndex);
+                            if (currentIndex < questions.length - 1) {
+                              setState(() {
+                                currentIndex += 1;
+                              });
+                            } else if (currentIndex == questions.length - 1) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => ResultPage()),
+                              );
+                            }
+                          },
                         ),
                       ],
                     ),

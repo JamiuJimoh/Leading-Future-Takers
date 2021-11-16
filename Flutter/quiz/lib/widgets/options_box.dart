@@ -3,20 +3,21 @@ import 'package:flutter/material.dart';
 import 'option.dart';
 
 class OptionsBox extends StatefulWidget {
-  const OptionsBox({
+  OptionsBox({
     Key? key,
     required this.options,
     required this.answer,
+    required this.isAnswered,
   }) : super(key: key);
   final List<String> options;
   final String answer;
+  bool isAnswered;
 
   @override
   State<OptionsBox> createState() => _OptionsBoxState();
 }
 
 class _OptionsBoxState extends State<OptionsBox> {
-  var _isAnswered = false;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,10 +29,10 @@ class _OptionsBoxState extends State<OptionsBox> {
               Option(
                 option: option,
                 answer: widget.answer,
-                answered: _isAnswered,
+                answered: widget.isAnswered,
                 answeredFn: (ans) {
                   setState(() {
-                    _isAnswered = ans;
+                    widget.isAnswered = ans;
                   });
                 },
               ),
