@@ -8,8 +8,7 @@
             "China",
             "Vietnam"
         ],
-        "answer": "China",
-        "isAnswered": false
+        "answer": "China"
     },
     {
         "id": "question2",
@@ -20,8 +19,7 @@
             "C",
             "D"
         ],
-        "answer": "A",
-        "isAnswered": false
+        "answer": "A"
     },
     {
         "id": "question3",
@@ -32,8 +30,7 @@
             "Argon",
             "Mercury"
         ],
-        "answer": "Mercury",
-        "isAnswered": false
+        "answer": "Mercury"
     },
     {
         "id": "question4",
@@ -44,8 +41,7 @@
             "Death",
             "Females"
         ],
-        "answer": "Spiders",
-        "isAnswered": false
+        "answer": "Spiders"
     },
     {
         "id": "question5",
@@ -56,8 +52,7 @@
             "Scapula",
             "Cornea"
         ],
-        "answer": "Cornea",
-        "isAnswered": false
+        "answer": "Cornea"
     },
     {
         "id": "question6",
@@ -68,8 +63,7 @@
             "Pied Piper",
             "Kia"
         ],
-        "answer": "Volkswagen",
-        "isAnswered": false
+        "answer": "Volkswagen"
     },
     {
         "id": "question7",
@@ -80,8 +74,7 @@
             "11",
             "6"
         ],
-        "answer": "11",
-        "isAnswered": false
+        "answer": "11"
     },
     {
         "id": "question8",
@@ -92,8 +85,7 @@
             "Yohan Blake",
             "Usain Bolt"
         ],
-        "answer": "Usain Bolt",
-        "isAnswered": false
+        "answer": "Usain Bolt"
     },
     {
         "id": "question9",
@@ -104,8 +96,7 @@
             "Kunta",
             "Kong"
         ],
-        "answer": "Drone",
-        "isAnswered": false
+        "answer": "Drone"
     },
     {
         "id": "question10",
@@ -116,7 +107,6 @@
             "Great white",
             "Octopus"
         ],
-        "answer": "The giant squid",
-        "isAnswered": false
+        "answer": "The giant squid"
     }
 ]

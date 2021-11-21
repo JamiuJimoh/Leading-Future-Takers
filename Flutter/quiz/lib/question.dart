@@ -3,13 +3,11 @@ class Question {
   final String question;
   final List<String> options;
   final String answer;
-  bool isAnswered;
   Question({
     required this.id,
     required this.question,
     required this.options,
     required this.answer,
-    required this.isAnswered,
   });
 
 //! De-serialization
@@ -19,7 +17,6 @@ class Question {
       question: data['question'],
       options: List<String>.from(data['options']),
       answer: data['answer'],
-      isAnswered: data['isAnswered'],
     );
   }
 }
