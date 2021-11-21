@@ -19,6 +19,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late Future<List<Question>> _fetchQuiz;
+
+  bool _isAnswered = false;
+  bool _resetOptions = true;
+
   var _currentIndex = 0;
   var _scoreCount = 0;
   //! We need the score count in the result page(it was pushed on the route stack)
@@ -31,6 +36,13 @@ class _HomePageState extends State<HomePage> {
     return data.map((e) => Question.fromMap(e)).toList();
   }
 
+  //! initState is called exactly once and then never again
+  @override
+  void initState() {
+    super.initState();
+    _fetchQuiz = getJson();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.only(
             top: 60.0, bottom: 5.0, left: 13.0, right: 13.0),
         child: FutureBuilder<List<Question>>(
-            future: getJson(),
+            future: _fetchQuiz,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();
@@ -91,13 +103,24 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           OptionsBox(
-                            isAnswered: questions[_currentIndex].isAnswered,
+                            resetOptions: _resetOptions,
+                            answeredFn: (isAnswered) {
+                              setState(() {
+                                _isAnswered = isAnswered;
+                              });
+                            },
+                            isAnswered: _isAnswered,
                             answer: questions[_currentIndex].answer,
                             options: questions[_currentIndex].options,
                             isCorrect: (isCorrect) {
                               if (isCorrect) {
                                 _scoreCount++;
                               }
+                            },
+                            resetOptionsFn: (reset) {
+                              setState(() {
+                                _resetOptions = reset;
+                              });
                             },
                           ),
                         ],
@@ -129,9 +152,14 @@ class _HomePageState extends State<HomePage> {
                         BlueButton(
                           label: 'Next',
                           onPressed: () {
+                            setState(() {
+                              _isAnswered = false;
+                            });
+
                             if (_currentIndex < questions.length - 1) {
                               setState(() {
                                 _currentIndex += 1;
+                                _resetOptions = true;
                               });
                             } else if (_currentIndex == questions.length - 1) {
                               Navigator.of(context).push(
@@ -143,6 +171,7 @@ class _HomePageState extends State<HomePage> {
                                       setState(() {
                                         _currentIndex = 0;
                                         _scoreCount = 0;
+                                        _resetOptions = true;
                                       });
                                     },
                                   ),
