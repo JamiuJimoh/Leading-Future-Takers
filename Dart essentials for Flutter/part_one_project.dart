@@ -7,6 +7,16 @@ void main() {
   guess();
 }
 
+//? Generate a random number
+//? Ask the user to input their guess
+///? Check if the user's input is equal to the generated random number
+//? If it is:
+//?         - the user won the game
+//? If it is lower:
+//?         - prompt the user that it's too low and replay the game
+//? If it is higher:
+//?         - prompt the user that it's high low and replay the game
+
 void guess() {
   print('*************************************');
   print('Welcome to the guess game');
